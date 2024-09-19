@@ -1,0 +1,53 @@
+<!-- modules/templates/modules/query.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AI Assistant</title>
+    <!-- Bootstrap CSS -->
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'modules/css/styles.css' %}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">AI Assistant</h1>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.query.label_tag }}
+                {{ form.query }}
+                {% if form.query.errors %}
+                    <div class="text-danger">
+                        {{ form.query.errors }}
+                    </div>
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        {% if module %}
+            <hr class="my-4">
+            <h2>Search Result</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ module.module_name }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Credits: {{ module.credits }}</h6>
+                    <p class="card-text">{{ module.description }}</p>
+                    <p><strong>Similarity:</strong> {{ similarity|floatformat:2 }}</p>
+                    {% if detailed_response %}
+                        <hr>
+                        <h5>Detailed Response</h5>
+                        <p>{{ detailed_response }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

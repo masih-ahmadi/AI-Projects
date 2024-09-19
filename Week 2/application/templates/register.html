@@ -1,0 +1,57 @@
+{% extends "layout/auth.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap p-4 p-md-5 shadow-sm" style="background-color: white">
+                    <h3 class="mb-4 text-center">Create Your Account</h3>
+                    <form method="POST" action="{% url 'register' %}" class="signin-form">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <label for="first_name" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="First Name" name="first_name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="last_name" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" placeholder="Last Name" name="last_name" required>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
+                        </div>
+                        <div class="form-group mb-3 position-relative">
+                            <label for="password1" class="form-label">Password</label>
+                            <input id="password1" type="password" class="form-control" name="password1" placeholder="Password" required>
+                            
+                        </div>
+                        <div class="form-group mb-3 position-relative">
+                            <label for="password2" class="form-label">Confirm Password</label>
+                            <input id="password2" type="password" class="form-control" name="password2" placeholder="Confirm Password" required>
+                            
+                        </div>
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-info submit px-3">Register</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-4">
+                        <a href="/login" class="text-muted">Already have an account? Login here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

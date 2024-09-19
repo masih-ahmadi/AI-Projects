@@ -1,0 +1,82 @@
+{% extends "layout/master.html" %}
+
+{% block title %}
+User Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="container rounded bg-white mt-5 mb-5" style="padding-top: 10px">
+    <div class="row">
+        <!-- Profile Settings -->
+        <div class="col-md-4">
+            {% if user.is_authenticated %}
+            <div class="card shadow-sm">
+                <form action="/profile/" method="post">
+                    {% csrf_token %}
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="text-info">Profile Settings</h4>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="first_name" class="labels">First Name</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="First Name" value="{{ user.first_name }}" name="first_name">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="last_name" class="labels">Last Name</label>
+                            <input type="text" class="form-control" id="last_name" placeholder="Last Name" value="{{ user.last_name }}" name="last_name">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="username" class="labels">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Username" value="{{ user.username }}" disabled>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="password1" class="labels">New Password</label>
+                                <input type="password" class="form-control" id="password1" placeholder="New Password" name="password1">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="password2" class="labels">Confirm Password</label>
+                                <input type="password" class="form-control" id="password2" placeholder="Confirm Password" name="password2">
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <button class="btn btn-info btn-block" type="submit">Save Profile</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Story History -->
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">
+                    <h4 class="mb-0">Story History</h4>
+                </div>
+                <div class="card-body">
+                    {% for story in stories %}
+                    <div class="post-preview mb-4">
+                        <a href="/read_story/{{ story.id }}/">
+                            <h5 class="post-title text-dark">Story of {{ story.name }} and {{ story.friend_name }} about {{ story.story_topic }}</h5>
+                        </a>
+                        <p class="post-subtitle text-muted" style="text-align: justify;">
+                            {{ story.generated_story | slice:":200" }}...
+                        </p>
+                        <a class="btn btn-info btn-sm text-white" href="/read_story/{{ story.id }}/">
+                            Read Story <span class="fa fa-book ml-1"></span>
+                        </a>
+                        <p class="post-meta mt-2">
+                            Created by <strong>{{ user.first_name }}</strong> on {{ story.created_at }}
+                        </p>
+                        <hr>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

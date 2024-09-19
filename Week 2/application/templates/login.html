@@ -1,0 +1,40 @@
+{% extends "layout/auth.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+                <div class="login-wrap p-4 p-md-5 shadow-sm" style="background-color: white">
+                    <h3 class="mb-4 text-center">Welcome Back!</h3>
+                    <form method="POST" action="{% url 'login' %}" class="signin-form">
+                        {% csrf_token %}
+                        <div class="form-group mb-3">
+                            <input type="text" class="form-control" placeholder="Username" name="username" required autofocus>
+                        </div>
+                        <div class="form-group mb-3 position-relative">
+                            <input id="password-field" type="password" class="form-control" name="password" placeholder="Password" required>
+                           
+                        </div>
+                        {% if error %}
+                        <div class="alert alert-danger" role="alert">
+                            {{ error }}
+                        </div>
+                        {% endif %}
+                        <div class="form-group">
+                            <button type="submit" class="form-control btn btn-info submit px-3">Login</button>
+                        </div>
+                    </form>
+                    <div class="text-center mt-4">
+                        <a href="/register" class="text-muted">Don't have an account? Register here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

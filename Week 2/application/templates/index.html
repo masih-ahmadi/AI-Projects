@@ -1,0 +1,57 @@
+{% extends "layout/master.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
+<!-- Page Header-->
+<header class="masthead" style="background-image: url('/static/assets/img/home.jpg'); margin-top: -83px;">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading text-center">
+                    <h1>Discover the Magic of Storytelling - :) </h1>
+                    <h3 class="alert alert-info">Your Unique Tale Begins Here</h3>
+
+                <a class="btn btn-info text-uppercase" href="add_story">Generate Story</a>
+           
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Main Content-->
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            <!-- Post previews-->
+            {% for story in stories %}
+            <div class="post-preview card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h2 class="post-title">
+                        Story of {{ story.name }} and {{ story.friend_name }} about {{ story.story_topic }}
+                    </h2>
+                    <p class="post-subtitle" style="text-align: justify; margin: 5px 0;" id="story-{{ story.id }}">
+                        {{ story.generated_story | slice:":200" }}...
+                    </p>
+                   
+                     <a class="btn btn-info btn-sm text-white" href="/read_story/{{ story.id }}/">
+                        Read Story <span class="fa fa-book"></span>
+                    </a>
+                    <p class="post-meta mt-3">
+                        Created by <b><a href="/profile" class="text-info">{{ user.first_name }}</a></b> on <b>{{ story.created_at }}</b>
+                    </p>
+                </div>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />
+            {% endfor %}
+            <!-- Pager-->
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

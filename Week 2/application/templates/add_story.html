@@ -1,0 +1,71 @@
+{% extends "layout/master.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5" style="margin-top: 140px !important; margin-bottom: 40px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header text-center bg-info text-white">
+                    <h4 class="mb-0">Generate Your Story</h4>
+                </div>
+                <div class="card-body">
+                    <form action="/add_story/" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="your_name" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" id="your_name" name="your_name" value="{{ your_name }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="your_friend_name" class="form-label">Friend's Name</label>
+                            <input type="text" class="form-control" id="your_friend_name" name="your_friend_name" value="{{ your_friend_name }}" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="story_you_want" class="form-label">Story Topic</label>
+                            <input type="text" class="form-control" id="story_you_want" name="story_you_want" value="{{ story_you_want }}" required>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-info btn-block">
+                                Generate Story <span class="fa fa-magic ms-2"></span>
+                            </button>
+                        </div>
+                    </form>
+
+                    {% if message %}
+                    <div class="alert alert-danger mt-3">
+                        <p>{{ message }}</p>
+                    </div>
+                    {% endif %}
+
+                    {% if story %}
+                    <div class="mt-4">
+                        <audio controls class="w-100">
+                            {% if history_entry %}
+                            <source src="/static/assets/record_sound_{{ history_entry.id }}.mp3" type="audio/mpeg">
+                            {% else %}
+                            <source src="/static/assets/record_sound_.mp3" type="audio/mpeg">
+                            {% endif %}   
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <div class="mt-3 text-justify" style="text-justify: inter-word;">
+                        <p id="text-of-story">{{ story }}</p>
+                        <p id="text-of-story">{{ valid }}</p>
+                        <p id="text-of-story">{{ evaluations }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block shared %}
+<script>
+// Add any custom scripts here
+</script>
+{% endblock %}

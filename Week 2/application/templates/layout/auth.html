@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+      .form-group{
+            margin-top: 20px !important;
+        }
+        .auth-body {
+            margin-top: 100px !important;
+        }
+    </style>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
+
+        <link rel="stylesheet" type="text/css" href="{% static 'libs/bootstrap/css/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'libs/font-awesome/css/fontawesome.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css'%}" />
+
+    </head>
+    <body style="background-image: url('/static/assets/img/home.jpg')" class="auth-body">
+
+        
+        <!-- Main Content-->
+        {% block content %}{% endblock %}
+        <!-- Footer-->
+       
+
+        <!-- Bootstrap core JS-->
+        <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'libs/font-awesome/js/all.js' %}" crossorigin="anonymous"></script>
+        <script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+        <!-- Core theme JS-->
+        <script src="{% static 'js/scripts.js'%}"></script>
+    </body>
+</html>

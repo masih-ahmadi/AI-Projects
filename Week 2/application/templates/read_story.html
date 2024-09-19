@@ -1,0 +1,45 @@
+{% extends "layout/master.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
+<!-- Main Content-->
+<div class="container px-4 px-lg-5 mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-8">
+            <!-- Story Previews -->
+            <div class="card-body">
+                {% for story in stories %}
+                <div class="post-preview mb-5">
+                    <a href="/read_story/{{ story.id }}/" class="text-decoration-none text-dark">
+                        <h2 class="post-title mb-3">Story of {{ story.name }} and {{ story.friend_name }} about {{ story.story_topic }}</h2>
+                    </a>
+                    <div class="audio-container mb-3">
+                        <audio controls class="w-100">
+                            <source src="/static/assets/record_sound_{{ story.id }}.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                        </audio>
+                    </div>
+                    <p id="text-of-story" class="post-subtitle" style="text-align: justify; margin: 20px 0px;">
+                        {{ story.generated_story }}
+                    </p>
+                    
+                    <p class="post-meta mt-2">
+                        Created by <a href="#!" class="text-primary">{{ user.first_name }}</a> on {{ story.created_at }}
+                    </p>
+                </div>
+                <!-- Divider -->
+                <hr class="my-4" />
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block shared %}
+<script>
+</script>
+{% endblock %}

@@ -1,0 +1,11 @@
+BERT Model Metrics:
+Accuracy: 0.36
+Precision: 0.17
+Recall: 0.19
+F1-Score: 0.18
+
+LLM Model Metrics:
+Accuracy: 0.64
+Precision: 0.32
+Recall: 0.50
+F1-Score: 0.39
