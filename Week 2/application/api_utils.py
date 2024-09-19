@@ -2,9 +2,9 @@ import requests
 import json
 
 #  API URL and API Key
-API_BASE_URL = 'https://llm-api.aieng.fim.uni-passau.de/v1'
+API_BASE_URL = 'url'
 API_URL_ENDPOINT = '/chat/completions'
-API_TOKEN = 'group5_s1b4b'
+API_TOKEN = 'key'
 ROLE = 'system'
 MODEL = 'Mixtral-8x7B-Instruct-v0.1'
 
