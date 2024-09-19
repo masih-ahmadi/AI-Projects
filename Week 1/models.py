@@ -9,8 +9,8 @@ REQUEST = "Provide me an answer as a json in the following format {\"toxic\": %t
 # Usin gpt2 LLM 
 
 #  API URL and API Key
-API_URL = 'https://llm-api.aieng.fim.uni-passau.de/v1/chat/completions'
-API_KEY = 'group5_s1b4b'
+API_URL = 'url'
+API_KEY = 'key'
 
 # Text classification 
 def classify_text(text, model_type='llm'):
