@@ -28,7 +28,7 @@ Before running the application, ensure you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://git.fim.uni-passau.de/ahmadima/ai-lab.git
+   git clone https://github.com/masih-ahmadi/ai-projects.git
    cd content-moderation-api
    ```
 
@@ -188,7 +188,7 @@ The Story Generator App is a web application built using Django that allows user
 
 1. **Clone the Repository**:
    ```
-   git clone https://git.fim.uni-passau.de/ahmadima/ai-lab.git
+   git clone https://github.com/masih-ahmadi/ai-projects.git
    cd story-generator-app
    ```
 
@@ -265,7 +265,7 @@ This Django application allows users to query university module information usin
 ### 1. Clone the Repository
 
 ```bash
-git clone https://git.fim.uni-passau.de/ahmadima/ai-lab.git
+git clone https://github.com/masih-ahmadi/ai-projects.git
 cd yourrepository
 ```
 
